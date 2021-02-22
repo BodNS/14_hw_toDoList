@@ -2,27 +2,25 @@ const newTask = document.querySelector("input[name=task]");
 const tskList = document.getElementById("tasksList");
 const addBtn = document.getElementById("addTaskButton");
 const delBtn = document.getElementById("deleteTaskButton");
-let liTaskElem = document.querySelectorAll("taskElem");
 const myRegExp = /\W/;
+let activLi;
 let isValid = false;
 
 newTask.oninput = onInputHandler;
 addBtn.addEventListener("click", addNewTask);
 delBtn.addEventListener("click", delTask);
 
-
-
 function onInputHandler(event) {
   if (!event.target.value) {
     event.target.classList.remove("validTask");
     event.target.classList.remove("invalidTask");
     event.target.classList.add("emptyInput");
-} else {
- event.target.classList.remove("invalidTask");
-  event.target.classList.remove("validTask");
-  isValid = !myRegExp.test(event.target.value);
-  event.target.classList.add(isValid ? "validTask" : "invalidTask");
-}
+  } else {
+    event.target.classList.remove("invalidTask");
+    event.target.classList.remove("validTask");
+    isValid = !myRegExp.test(event.target.value);
+    event.target.classList.add(isValid ? "validTask" : "invalidTask");
+  }
 }
 
 function addNewTask(event) {
@@ -30,34 +28,39 @@ function addNewTask(event) {
     const liNewTask = document.createElement("li");
     liNewTask.classList.add("taskElem");
     liNewTask.textContent = newTask.value;
+    liNewTask.addEventListener("click", highlightElement);
     tskList.append(liNewTask);
     newTask.value = "";
+
     newTask.classList.remove("validTask");
     newTask.classList.add("emptyInput");
   }
   return;
 }
 
-function highlightElement (event) {
-event.target.classList.remove("taskElem");
-    event.target.classList.add("highlightElem");
+function highlightElement(event) {
+  activLi = event.target;
+  activLi.classList.remove("taskElem");
+  activLi.classList.add("highlightElem");
+  activLi.removeEventListener("click", highlightElement);
+  activLi.addEventListener("blur", lostFocus);
 }
 
-function delTask (event) {
-
-
+function lostFocus(event) {
+  event.target.classList.remove("highlightElem");
+  event.target.classList.add("taskElem");
+  activLi = "";
 }
 
-function liMonitoring () {
-  setInterval(() => {
-    liTaskElem = document.querySelectorAll("taskElem");
-for (let li of liTaskElem) {
-  li.addEventListener("click", highlightElement);
-}
-  }, 1000);
+function delTask(event) {
+  if (activLi) {
+    activLi.remove();
+    activLi = "";
+  } else {
+    throw new Error(alert("Choose task"));
+  }
 }
 
-liMonitoring (); 
 /* const divBlock = document.querySelectorAll(".changeColor");
 
 for (let elem of divBlock) {
