@@ -27,6 +27,15 @@ input {
 
 .taskElem {
   font-size: 14px;
+  border: 1px solid blue;
+}
+
+.highlightElem {
+  border: 1px solid red;
+}
+
+.emptyInput {
+  background-color: blanchedalmond;
 }
 
 .validTask {
