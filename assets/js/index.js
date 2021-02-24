@@ -27,11 +27,12 @@ function addNewTask(event) {
   if (newTask.value && isValid) {
     const liNewTask = document.createElement("li");
     liNewTask.classList.add("taskElem");
+    liNewTask.setAttribute("tabindex", "-1");
+    liNewTask.tabIndex = 0;
     liNewTask.textContent = newTask.value;
     liNewTask.addEventListener("click", highlightElement);
     tskList.append(liNewTask);
     newTask.value = "";
-
     newTask.classList.remove("validTask");
     newTask.classList.add("emptyInput");
   }
@@ -42,20 +43,18 @@ function highlightElement(event) {
   activLi = event.target;
   activLi.classList.remove("taskElem");
   activLi.classList.add("highlightElem");
-  activLi.removeEventListener("click", highlightElement);
   activLi.addEventListener("blur", lostFocus);
 }
 
 function lostFocus(event) {
   event.target.classList.remove("highlightElem");
   event.target.classList.add("taskElem");
-  activLi = "";
 }
 
 function delTask(event) {
   if (activLi) {
     activLi.remove();
-    activLi = "";
+    activLi = null;
   } else {
     throw new Error(alert("Choose task"));
   }
