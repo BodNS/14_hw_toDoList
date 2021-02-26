@@ -33,6 +33,7 @@ function addNewTask(event) {
     liNewTask.addEventListener("click", highlightElement);
     tskList.append(liNewTask);
     newTask.value = "";
+
     newTask.classList.remove("validTask");
     newTask.classList.add("emptyInput");
   }

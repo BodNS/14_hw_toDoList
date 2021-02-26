@@ -19,10 +19,11 @@ input {
   padding: 1px;
   margin: 30px 5px 10px 5px;
   line-height: 25px;
+  border-color: burlywood;
 }
 
 li {
-  list-style-type: none; /* Убираем маркеры */
+  list-style-type: none; Убираем маркеры
   width: 100%;
   margin: 5px 0px;
   overflow: hidden;
@@ -31,13 +32,11 @@ li {
 ul {
   border: 1px solid red;
   width: 90%;
-
-  margin-left: 0; /* Отступ слева в браузере IE и Opera */
-  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  /* list-style-image: url(https://icons8.com/iconizer/files/Dark_Glass/orig/camera_test.png); */
 }
 
 #container {
-  background-color: white;
+  background-color: rgb(252, 238, 217);
   width: 50%;
   height: 80%;
   overflow: hidden;
@@ -52,6 +51,37 @@ ul {
   justify-content: space-around;
   margin: 10px 5px 10px 5px;
   width: 90%;
+}
+
+#addTaskButton,
+#deleteTaskButton {
+  background-color: blanchedalmond;
+  border: 1px solid #cccccc;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+  border-radius: 4px;
+  color: #555555;
+  width: 120px;
+  margin: 2px auto;
+  font-size: 14px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 5px;
+  padding: 3px 3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#addTaskButton:hover,
+#deleteTaskButton:hover,
+#addTaskButton:focus,
+#deleteTaskButton:focus {
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 8px rgba(255, 255, 255, 0.6);
+  outline: 0 none;
 }
 
 .taskElem {
