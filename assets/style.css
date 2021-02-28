@@ -14,7 +14,7 @@ body {
   background-color: #7f7f7f;
 }
 
-input {
+#container > input {
   width: 90%;
   padding: 1px;
   margin: 30px 5px 10px 5px;
@@ -22,11 +22,24 @@ input {
   border-color: burlywood;
 }
 
+p {
+  margin: 0px 5px;
+  position: absolute;
+  right: 0px;
+}
+
+label {
+  margin: 0px 5px;
+}
+
 li {
-  list-style-type: none; Убираем маркеры
+  list-style-type: none; /*Убираем маркеры */
   width: 100%;
   margin: 5px 0px;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }
 
 ul {
