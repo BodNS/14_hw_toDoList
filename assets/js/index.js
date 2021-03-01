@@ -1,15 +1,14 @@
 "use strict";
 import * as Create from "./create.js";
+import { highlightElement } from "./hlLi.js";
 
 export const newTask = document.querySelector("input[name=task]");
 const tskList = document.getElementById("tasksList");
 const addBtn = document.getElementById("addTaskButton");
 const delBtn = document.getElementById("deleteTaskButton");
-let checkboxLiNewTask;
 const myRegExp = /\W/;
-
-// let activLi;
-let isValid = false;
+let checkboxLiNewTask,
+  isValid = false;
 
 newTask.oninput = onInputHandler;
 addBtn.addEventListener("click", addNewTask);
@@ -46,30 +45,10 @@ function addNewTask(event) {
 }
 
 function delTask(event) {
-  let checkBox = document.querySelectorAll("input:checked");
+  const checkBox = document.querySelectorAll("input:checked");
   if (checkBox.length) {
     checkBox.forEach((e) => e.parentNode.remove());
   } else {
     throw new Error(alert("Choose task"));
   }
 }
-
-//выделение элемента списка
-function highlightElement(event) {
-  if (checkboxLiNewTask.checked) {
-    this.parentNode.classList.remove("taskElem");
-    this.parentNode.classList.add("highlightElem");
-  } else {
-    this.parentNode.classList.remove("highlightElem");
-    this.parentNode.classList.add("taskElem");
-  }
-  /* checkboxLiNewTask.removeEventListener("click", highlightElement);
-  checkboxLiNewTask.addEventListener("click", lostFocus); */
-}
-/*
-function lostFocus(event) {
-  this.parentNode.classList.remove("highlightElem");
-  this.parentNode.classList.add("taskElem");
-  checkboxLiNewTask.removeEventListener("click", lostFocus);
-  checkboxLiNewTask.addEventListener("click", highlightElement);
-} */
